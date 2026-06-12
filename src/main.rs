@@ -8,6 +8,7 @@ mod config;
 mod dotatypes;
 mod kvparser;
 mod presets;
+mod vpk;
 
 struct AppData {
     heroes: Vec<dotatypes::Hero>,
@@ -188,11 +189,9 @@ impl AppState {
             None => { d.status_message = "Путь к Dota 2 не указан".into(); return; }
         };
         drop(d);
-        let bin = if cfg!(target_os = "windows") { "bin/vpkeditcli.exe" } else { "bin/vpkeditcli" };
-        let _ = std::process::Command::new(bin).args(["--remove-file", "resource/localization/abilities_russian.txt", &vpk]).output();
-        match std::process::Command::new(bin).args(["--add-file", "./data/abilities_russian.txt", "resource/localization/abilities_russian.txt", &vpk]).output() {
+        match vpk::replace_file(&vpk, "resource/localization/abilities_russian.txt", "data/abilities_russian.txt") {
             Ok(_) => set_status("Изменения сохранены в VPK"),
-            Err(_) => set_status("Не удалось добавить файл в VPK"),
+            Err(e) => set_status(&format!("Ошибка сохранения VPK: {}", e)),
         }
     }
 
