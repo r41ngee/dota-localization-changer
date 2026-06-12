@@ -316,11 +316,7 @@ ApplicationWindow {
             for (var i = 0; i < skillsModel.count; i++) {
                 skillsArr.push({ custom: skillsModel.get(i).custom })
             }
-            var facetsArr = []
-            for (var j = 0; j < facetsModel.count; j++) {
-                facetsArr.push({ custom: facetsModel.get(j).custom })
-            }
-            app.editHero(editingHeroIndex, heroName, JSON.stringify(skillsArr), JSON.stringify(facetsArr))
+            app.editHero(editingHeroIndex, heroName, JSON.stringify(skillsArr))
             refreshHeroes()
         }
 
@@ -337,82 +333,38 @@ ApplicationWindow {
                 background: Rectangle { color: "#36393F"; radius: 4 }
             }
 
-            RowLayout {
+            ColumnLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                spacing: 10
+                Label { text: "Скиллы"; color: "white"; font.bold: true }
 
-                ColumnLayout {
+                ListView {
+                    id: skillsView
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    Label { text: "Скиллы"; color: "white"; font.bold: true }
+                    model: ListModel { id: skillsModel }
+                    clip: true
+                    boundsBehavior: Flickable.StopAtBounds
 
-                    ListView {
-                        id: skillsView
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        model: ListModel { id: skillsModel }
-                        clip: true
-                        boundsBehavior: Flickable.StopAtBounds
-
-                        delegate: Rectangle {
-                            width: skillsView.width
-                            height: 30
-                            color: "#36393F"
-                            RowLayout {
-                                anchors.fill: parent
-                                anchors.leftMargin: 5; anchors.rightMargin: 5
-                                Label {
-                                    text: model.name
-                                    color: "white"
-                                    Layout.fillWidth: true
-                                }
-                                TextField {
-                                    text: model.custom
-                                    color: "white"
-                                    Layout.fillWidth: true
-                                    Layout.minimumWidth: 80
-                                    background: Rectangle { color: "#40444B"; radius: 4 }
-                                    onEditingFinished: skillsModel.set(index, { custom: text })
-                                }
+                    delegate: Rectangle {
+                        width: skillsView.width
+                        height: 30
+                        color: "#36393F"
+                        RowLayout {
+                            anchors.fill: parent
+                            anchors.leftMargin: 5; anchors.rightMargin: 5
+                            Label {
+                                text: model.name
+                                color: "white"
+                                Layout.fillWidth: true
                             }
-                        }
-                    }
-                }
-
-                ColumnLayout {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Label { text: "Аспекты"; color: "white"; font.bold: true }
-
-                    ListView {
-                        id: facetsView
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        model: ListModel { id: facetsModel }
-                        clip: true
-                        boundsBehavior: Flickable.StopAtBounds
-
-                        delegate: Rectangle {
-                            width: facetsView.width
-                            height: 30
-                            color: "#36393F"
-                            RowLayout {
-                                anchors.fill: parent
-                                anchors.leftMargin: 5; anchors.rightMargin: 5
-                                Label {
-                                    text: model.name
-                                    color: "white"
-                                    Layout.fillWidth: true
-                                }
-                                TextField {
-                                    text: model.custom
-                                    color: "white"
-                                    Layout.fillWidth: true
-                                    Layout.minimumWidth: 80
-                                    background: Rectangle { color: "#40444B"; radius: 4 }
-                                    onEditingFinished: facetsModel.set(index, { custom: text })
-                                }
+                            TextField {
+                                text: model.custom
+                                color: "white"
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 80
+                                background: Rectangle { color: "#40444B"; radius: 4 }
+                                onEditingFinished: skillsModel.set(index, { custom: text })
                             }
                         }
                     }
@@ -432,16 +384,6 @@ ApplicationWindow {
                 skillsModel.append({
                     name: hero.skills[i].name,
                     custom: hero.skills[i].username || "N/A"
-                })
-            }
-        }
-
-        facetsModel.clear()
-        if (hero.facets) {
-            for (var j = 0; j < hero.facets.length; j++) {
-                facetsModel.append({
-                    name: hero.facets[j].name,
-                    custom: hero.facets[j].username || "N/A"
                 })
             }
         }

@@ -77,7 +77,7 @@ pub struct AppState {
     getStatusMessage: qt_method!(fn(&self) -> QString),
     filterHeroes: qt_method!(fn(&self, query: String)),
     filterItems: qt_method!(fn(&self, query: String)),
-    editHero: qt_method!(fn(&self, index: i32, username: String, skillsJson: String, facetsJson: String)),
+    editHero: qt_method!(fn(&self, index: i32, username: String, skillsJson: String)),
     editItem: qt_method!(fn(&self, index: i32, username: String)),
     savePreset: qt_method!(fn(&self, name: String)),
     loadPreset: qt_method!(fn(&self, filename: String)),
@@ -121,7 +121,7 @@ impl AppState {
         };
     }
 
-    fn editHero(&self, index: i32, username: String, skillsJson: String, facetsJson: String) {
+    fn editHero(&self, index: i32, username: String, skillsJson: String) {
         let mut d = app_data().lock().unwrap();
         let ui = index as usize;
         let real = if ui < d.filtered_heroes.len() { d.filtered_heroes[ui] } else { return };
@@ -132,15 +132,6 @@ impl AppState {
                 if i < hero.skills.len() {
                     if let Some(c) = sv.get("custom").and_then(|v| v.as_str()) {
                         hero.skills[i].entity.username = if c.is_empty() || c == "N/A" { None } else { Some(c.into()) };
-                    }
-                }
-            }
-        }
-        if let Ok(facets) = serde_json::from_str::<Vec<serde_json::Value>>(&facetsJson) {
-            for (i, fv) in facets.iter().enumerate() {
-                if i < hero.facets.len() {
-                    if let Some(c) = fv.get("custom").and_then(|v| v.as_str()) {
-                        hero.facets[i].entity.username = if c.is_empty() || c == "N/A" { None } else { Some(c.into()) };
                     }
                 }
             }
@@ -210,7 +201,6 @@ impl AppState {
         for hero in &mut d.heroes {
             hero.base.username = None;
             for skill in &mut hero.skills { skill.entity.username = None; }
-            for facet in &mut hero.facets { facet.entity.username = None; }
         }
         for item in &mut d.items { item.entity.username = None; }
         d.status_message = "Все настройки сброшены".into();

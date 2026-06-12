@@ -37,22 +37,6 @@ impl Skill {
     }
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Facet {
-    #[serde(flatten)]
-    pub entity: LocalizableEntity,
-}
-
-impl Facet {
-    pub fn to_dict(&self) -> serde_json::Value {
-        self.entity.to_dict()
-    }
-    pub fn to_key_pair(&self) -> (String, String) {
-        let v = self.entity.username.clone().unwrap_or_else(|| self.entity.name.clone());
-        (self.entity.key.clone(), v)
-    }
-}
-
 fn default_gender() -> String {
     "m".to_string()
 }
@@ -64,7 +48,6 @@ pub struct Hero {
     #[serde(default = "default_gender")]
     pub gender: String,
     pub skills: Vec<Skill>,
-    pub facets: Vec<Facet>,
 }
 
 impl Hero {
@@ -80,8 +63,6 @@ impl Hero {
         }
         let skills: Vec<serde_json::Value> = self.skills.iter().map(|s| s.to_dict()).collect();
         m.insert("skills".into(), skills.into());
-        let facets: Vec<serde_json::Value> = self.facets.iter().map(|f| f.to_dict()).collect();
-        m.insert("facets".into(), facets.into());
         serde_json::Value::Object(m)
     }
 
@@ -91,10 +72,6 @@ impl Hero {
         r.insert(self.base.key.clone(), format!("#|{}|#{}", self.gender, nv));
         for s in &self.skills {
             let (k, v) = s.to_key_pair();
-            r.insert(k, v);
-        }
-        for f in &self.facets {
-            let (k, v) = f.to_key_pair();
             r.insert(k, v);
         }
         r
