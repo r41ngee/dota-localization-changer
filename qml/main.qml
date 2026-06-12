@@ -229,7 +229,7 @@ ApplicationWindow {
                                     anchors.right: parent.right; anchors.rightMargin: 10
                                     anchors.top: parent.top; anchors.bottom: parent.bottom
                                     Label {
-                                        text: itemData[index] ? (itemData[index].username || "N/A") : ""
+                                        text: itemData[index] ? (itemData[index].username || itemData[index].name) : ""
                                         color: itemData[index] && itemData[index].username ? "#7289DA" : "#888888"
                                         font.bold: itemData[index] && itemData[index].username ? true : false
                                         anchors.fill: parent
@@ -386,6 +386,8 @@ ApplicationWindow {
                             TextField {
                                 text: model.custom
                                 color: "white"
+                                placeholderText: model.name
+                                placeholderTextColor: "#888888"
                                 anchors.fill: parent
                                 background: Rectangle { color: "#40444B"; radius: 4 }
                                 onEditingFinished: skillsModel.set(index, { custom: text })
@@ -407,7 +409,7 @@ ApplicationWindow {
             for (var i = 0; i < hero.skills.length; i++) {
                 skillsModel.append({
                     name: hero.skills[i].name,
-                    custom: hero.skills[i].username || "N/A"
+                    custom: hero.skills[i].username || ""
                 })
             }
         }
