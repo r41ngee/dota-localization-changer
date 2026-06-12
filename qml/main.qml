@@ -193,11 +193,17 @@ ApplicationWindow {
                                 height: 30
                                 color: "#2C2F33"
                                 radius: 4
-                                RowLayout {
-                                    anchors.fill: parent
-                                    anchors.leftMargin: 10; anchors.rightMargin: 10
-                                    Label { text: "Имя"; color: "white"; font.bold: true; Layout.fillWidth: true }
-                                    Label { text: "Кастомное имя"; color: "white"; font.bold: true; Layout.fillWidth: true }
+                                Item {
+                                    anchors.left: parent.left; anchors.leftMargin: 10
+                                    anchors.right: parent.horizontalCenter; anchors.rightMargin: 5
+                                    anchors.top: parent.top; anchors.bottom: parent.bottom
+                                    Label { text: "Имя"; color: "white"; font.bold: true; anchors.centerIn: parent }
+                                }
+                                Item {
+                                    anchors.left: parent.horizontalCenter; anchors.leftMargin: 5
+                                    anchors.right: parent.right; anchors.rightMargin: 10
+                                    anchors.top: parent.top; anchors.bottom: parent.bottom
+                                    Label { text: "Кастомное имя"; color: "white"; font.bold: true; anchors.centerIn: parent }
                                 }
                             }
 
@@ -206,18 +212,29 @@ ApplicationWindow {
                                 height: 35
                                 color: mouseAreaItem.containsMouse ? "#40444B" : "#36393F"
 
-                                RowLayout {
-                                    anchors.fill: parent
-                                    anchors.leftMargin: 10; anchors.rightMargin: 10
+                                Item {
+                                    anchors.left: parent.left; anchors.leftMargin: 10
+                                    anchors.right: parent.horizontalCenter; anchors.rightMargin: 5
+                                    anchors.top: parent.top; anchors.bottom: parent.bottom
                                     Label {
                                         text: itemData[index] ? itemData[index].name || "" : ""
-                                        color: "white"; Layout.fillWidth: true
+                                        color: "white"
+                                        anchors.fill: parent
+                                        verticalAlignment: Text.AlignVCenter
+                                        elide: Text.ElideRight
                                     }
+                                }
+                                Item {
+                                    anchors.left: parent.horizontalCenter; anchors.leftMargin: 5
+                                    anchors.right: parent.right; anchors.rightMargin: 10
+                                    anchors.top: parent.top; anchors.bottom: parent.bottom
                                     Label {
                                         text: itemData[index] ? (itemData[index].username || "N/A") : ""
                                         color: itemData[index] && itemData[index].username ? "#7289DA" : "#888888"
                                         font.bold: itemData[index] && itemData[index].username ? true : false
-                                        Layout.fillWidth: true
+                                        anchors.fill: parent
+                                        verticalAlignment: Text.AlignVCenter
+                                        elide: Text.ElideRight
                                     }
                                 }
 
@@ -350,19 +367,26 @@ ApplicationWindow {
                         width: skillsView.width
                         height: 30
                         color: "#36393F"
-                        RowLayout {
-                            anchors.fill: parent
-                            anchors.leftMargin: 5; anchors.rightMargin: 5
+                        Item {
+                            anchors.left: parent.left; anchors.leftMargin: 5
+                            anchors.right: parent.horizontalCenter; anchors.rightMargin: 2
+                            anchors.top: parent.top; anchors.bottom: parent.bottom
                             Label {
                                 text: model.name
                                 color: "white"
-                                Layout.fillWidth: true
+                                anchors.fill: parent
+                                verticalAlignment: Text.AlignVCenter
+                                elide: Text.ElideRight
                             }
+                        }
+                        Item {
+                            anchors.left: parent.horizontalCenter; anchors.leftMargin: 2
+                            anchors.right: parent.right; anchors.rightMargin: 5
+                            anchors.top: parent.top; anchors.bottom: parent.bottom
                             TextField {
                                 text: model.custom
                                 color: "white"
-                                Layout.fillWidth: true
-                                Layout.minimumWidth: 80
+                                anchors.fill: parent
                                 background: Rectangle { color: "#40444B"; radius: 4 }
                                 onEditingFinished: skillsModel.set(index, { custom: text })
                             }
