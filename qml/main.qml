@@ -114,7 +114,8 @@ ApplicationWindow {
                         GridView {
                             id: heroGrid
                             model: heroData.length
-                            cellWidth: 200
+                            property int minCellWidth: 150
+                            cellWidth: Math.floor(width / Math.max(1, Math.floor(width / minCellWidth)))
                             cellHeight: 40
                             boundsBehavior: Flickable.StopAtBounds
 
@@ -126,12 +127,15 @@ ApplicationWindow {
                                 x: 4; y: 2
 
                                 Text {
-                                    anchors.centerIn: parent
+                                    anchors.fill: parent
+                                    anchors.margins: 4
                                     text: heroData[index] ? heroData[index].name || "" : ""
                                     color: heroData[index] && heroData[index].username ? "#7289DA" : "white"
                                     font.bold: heroData[index] && heroData[index].username ? true : false
                                     font.pointSize: 10
                                     elide: Text.ElideRight
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
                                 }
 
                                 MouseArea {
@@ -180,6 +184,7 @@ ApplicationWindow {
 
                         ListView {
                             id: itemsList
+                            anchors.fill: parent
                             model: itemData.length
                             boundsBehavior: Flickable.StopAtBounds
 
@@ -361,12 +366,12 @@ ApplicationWindow {
                                     text: model.name
                                     color: "white"
                                     Layout.fillWidth: true
-                                    Layout.preferredWidth: parent.width * 0.45
                                 }
                                 TextField {
                                     text: model.custom
                                     color: "white"
                                     Layout.fillWidth: true
+                                    Layout.minimumWidth: 80
                                     background: Rectangle { color: "#40444B"; radius: 4 }
                                     onEditingFinished: skillsModel.set(index, { custom: text })
                                 }
@@ -399,12 +404,12 @@ ApplicationWindow {
                                     text: model.name
                                     color: "white"
                                     Layout.fillWidth: true
-                                    Layout.preferredWidth: parent.width * 0.45
                                 }
                                 TextField {
                                     text: model.custom
                                     color: "white"
                                     Layout.fillWidth: true
+                                    Layout.minimumWidth: 80
                                     background: Rectangle { color: "#40444B"; radius: 4 }
                                     onEditingFinished: facetsModel.set(index, { custom: text })
                                 }
@@ -494,7 +499,7 @@ ApplicationWindow {
         x: Math.round((window.width - width) / 2)
         y: Math.round((window.height - height) / 2)
         width: 400
-        height: 200
+        height: 400
         background: Rectangle { color: "#2C2F33"; radius: 8 }
 
         onAccepted: {
@@ -505,23 +510,60 @@ ApplicationWindow {
             }
         }
 
+        onOpened: {
+            refreshPresets()
+        }
+
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 20
-            spacing: 15
+            anchors.margins: 15
+            spacing: 10
 
-            Label { text: "Имя пресета:"; color: "white"; font.pointSize: 12 }
+            Label { text: "Имя нового пресета:"; color: "white"; font.pointSize: 12 }
             TextField {
                 id: presetNameField
                 Layout.fillWidth: true
                 color: "white"
                 background: Rectangle { color: "#36393F"; radius: 4 }
             }
+
+            Label {
+                text: "Существующие пресеты (нажмите чтобы перезаписать):"
+                color: "#888888"; font.pointSize: 9
+                visible: existingPresetsForSave.count > 0
+            }
+
+            ListView {
+                id: existingPresetsForSave
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                model: presetList
+                clip: true
+                boundsBehavior: Flickable.StopAtBounds
+
+                delegate: ItemDelegate {
+                    width: existingPresetsForSave.width
+                    text: modelData || ""
+                    hoverEnabled: true
+                    contentItem: Text {
+                        text: parent.text; color: "white"
+                        font.pointSize: 10
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    background: Rectangle {
+                        color: parent.hovered ? "#40444B" : "#36393F"
+                    }
+                    onClicked: {
+                        presetNameField.text = modelData
+                    }
+                }
+            }
         }
     }
 
     function openSavePresetDialog() {
         presetNameField.text = ""
+        refreshPresets()
         savePresetDialog.open()
     }
 
@@ -536,6 +578,8 @@ ApplicationWindow {
         height: 400
         background: Rectangle { color: "#2C2F33"; radius: 8 }
 
+        onOpened: refreshPresets()
+
         onAccepted: {
             if (presetListView.currentIndex >= 0) {
                 var name = presetList[presetListView.currentIndex]
@@ -543,6 +587,7 @@ ApplicationWindow {
                     app.loadPreset(name)
                     refreshHeroes()
                     refreshItems()
+                    refreshPresets()
                 }
             }
         }
@@ -567,21 +612,16 @@ ApplicationWindow {
                     width: presetListView.width
                     text: modelData || ""
                     highlighted: ListView.isCurrentItem
+                    hoverEnabled: true
                     contentItem: Text {
                         text: parent.text; color: "white"
                         font.pointSize: 10
                         verticalAlignment: Text.AlignVCenter
                     }
                     background: Rectangle {
-                        color: parent.highlighted ? "#7289DA" : (mouseAreaDel.containsMouse ? "#40444B" : "#36393F")
+                        color: parent.highlighted ? "#7289DA" : (parent.hovered ? "#40444B" : "#36393F")
                     }
-                    MouseArea {
-                        id: mouseAreaDel
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: presetListView.currentIndex = index
-                    }
+                    onClicked: presetListView.currentIndex = index
                 }
             }
         }

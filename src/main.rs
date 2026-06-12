@@ -51,10 +51,6 @@ fn set_status(msg: &str) {
     app_data().lock().unwrap().status_message = msg.to_string();
 }
 
-fn get_status() -> String {
-    app_data().lock().unwrap().status_message.clone()
-}
-
 fn hero_json(d: &AppData) -> String {
     let sub: Vec<&dotatypes::Hero> = d.filtered_heroes.iter().map(|&i| &d.heroes[i]).collect();
     serde_json::to_string(&sub).unwrap_or_default()
@@ -71,33 +67,35 @@ fn preset_json_str() -> String {
 }
 
 #[derive(Default, QObject)]
+#[allow(non_snake_case)]
 pub struct AppState {
     base: qt_base_class!(trait QObject),
 
-    get_heroes_json: qt_method!(fn(&self) -> QString),
-    get_items_json: qt_method!(fn(&self) -> QString),
-    get_preset_names_json: qt_method!(fn(&self) -> QString),
-    get_status_message: qt_method!(fn(&self) -> QString),
-    filter_heroes: qt_method!(fn(&self, query: String)),
-    filter_items: qt_method!(fn(&self, query: String)),
-    edit_hero: qt_method!(fn(&self, index: i32, username: String, skills_json: String, facets_json: String)),
-    edit_item: qt_method!(fn(&self, index: i32, username: String)),
-    save_preset: qt_method!(fn(&self, name: String)),
-    load_preset: qt_method!(fn(&self, filename: String)),
-    save_changes: qt_method!(fn(&self)),
-    reset_all: qt_method!(fn(&self)),
-    open_presets_folder: qt_method!(fn(&self)),
-    set_dota_path: qt_method!(fn(&self, path: String)),
-    get_dota_path: qt_method!(fn(&self) -> QString),
+    getHeroesJson: qt_method!(fn(&self) -> QString),
+    getItemsJson: qt_method!(fn(&self) -> QString),
+    getPresetNamesJson: qt_method!(fn(&self) -> QString),
+    getStatusMessage: qt_method!(fn(&self) -> QString),
+    filterHeroes: qt_method!(fn(&self, query: String)),
+    filterItems: qt_method!(fn(&self, query: String)),
+    editHero: qt_method!(fn(&self, index: i32, username: String, skillsJson: String, facetsJson: String)),
+    editItem: qt_method!(fn(&self, index: i32, username: String)),
+    savePreset: qt_method!(fn(&self, name: String)),
+    loadPreset: qt_method!(fn(&self, filename: String)),
+    saveChanges: qt_method!(fn(&self)),
+    resetAll: qt_method!(fn(&self)),
+    openPresetsFolder: qt_method!(fn(&self)),
+    setDotaPath: qt_method!(fn(&self, path: String)),
+    getDotaPath: qt_method!(fn(&self) -> QString),
 }
 
+#[allow(non_snake_case)]
 impl AppState {
-    fn get_heroes_json(&self) -> QString { let d = app_data().lock().unwrap(); hero_json(&d).into() }
-    fn get_items_json(&self) -> QString { let d = app_data().lock().unwrap(); item_json(&d).into() }
-    fn get_preset_names_json(&self) -> QString { preset_json_str().into() }
-    fn get_status_message(&self) -> QString { get_status().into() }
+    fn getHeroesJson(&self) -> QString { let d = app_data().lock().unwrap(); hero_json(&d).into() }
+    fn getItemsJson(&self) -> QString { let d = app_data().lock().unwrap(); item_json(&d).into() }
+    fn getPresetNamesJson(&self) -> QString { preset_json_str().into() }
+    fn getStatusMessage(&self) -> QString { app_data().lock().unwrap().status_message.clone().into() }
 
-    fn filter_heroes(&self, query: String) {
+    fn filterHeroes(&self, query: String) {
         let mut d = app_data().lock().unwrap();
         d.filter_hero_query = query.to_lowercase();
         d.filtered_heroes = if d.filter_hero_query.is_empty() {
@@ -110,7 +108,7 @@ impl AppState {
         };
     }
 
-    fn filter_items(&self, query: String) {
+    fn filterItems(&self, query: String) {
         let mut d = app_data().lock().unwrap();
         d.filter_item_query = query.to_lowercase();
         d.filtered_items = if d.filter_item_query.is_empty() {
@@ -123,13 +121,13 @@ impl AppState {
         };
     }
 
-    fn edit_hero(&self, index: i32, username: String, skills_json: String, facets_json: String) {
+    fn editHero(&self, index: i32, username: String, skillsJson: String, facetsJson: String) {
         let mut d = app_data().lock().unwrap();
         let ui = index as usize;
         let real = if ui < d.filtered_heroes.len() { d.filtered_heroes[ui] } else { return };
         let hero = &mut d.heroes[real];
         hero.base.username = if username.is_empty() { None } else { Some(username) };
-        if let Ok(skills) = serde_json::from_str::<Vec<serde_json::Value>>(&skills_json) {
+        if let Ok(skills) = serde_json::from_str::<Vec<serde_json::Value>>(&skillsJson) {
             for (i, sv) in skills.iter().enumerate() {
                 if i < hero.skills.len() {
                     if let Some(c) = sv.get("custom").and_then(|v| v.as_str()) {
@@ -138,7 +136,7 @@ impl AppState {
                 }
             }
         }
-        if let Ok(facets) = serde_json::from_str::<Vec<serde_json::Value>>(&facets_json) {
+        if let Ok(facets) = serde_json::from_str::<Vec<serde_json::Value>>(&facetsJson) {
             for (i, fv) in facets.iter().enumerate() {
                 if i < hero.facets.len() {
                     if let Some(c) = fv.get("custom").and_then(|v| v.as_str()) {
@@ -150,7 +148,7 @@ impl AppState {
         d.status_message = "Герой сохранён".into();
     }
 
-    fn edit_item(&self, index: i32, username: String) {
+    fn editItem(&self, index: i32, username: String) {
         let mut d = app_data().lock().unwrap();
         let ui = index as usize;
         let real = if ui < d.filtered_items.len() { d.filtered_items[ui] } else { return };
@@ -158,7 +156,7 @@ impl AppState {
         d.status_message = "Предмет сохранён".into();
     }
 
-    fn save_preset(&self, name: String) {
+    fn savePreset(&self, name: String) {
         if name.is_empty() { return; }
         let d = app_data().lock().unwrap();
         let preset = presets::Preset::new(&name, d.heroes.clone(), d.items.clone());
@@ -167,7 +165,7 @@ impl AppState {
         set_status(&format!("Пресет '{}' сохранён", name));
     }
 
-    fn load_preset(&self, filename: String) {
+    fn loadPreset(&self, filename: String) {
         let preset = presets::Preset::load(&filename);
         let mut d = app_data().lock().unwrap();
         d.heroes = preset.heroes;
@@ -179,7 +177,7 @@ impl AppState {
         d.status_message = format!("Пресет '{}' загружен", filename);
     }
 
-    fn save_changes(&self) {
+    fn saveChanges(&self) {
         let mut d = app_data().lock().unwrap();
         let content = match std::fs::read_to_string("data/abilities_russian.txt") {
             Ok(c) => c,
@@ -207,7 +205,7 @@ impl AppState {
         }
     }
 
-    fn reset_all(&self) {
+    fn resetAll(&self) {
         let mut d = app_data().lock().unwrap();
         for hero in &mut d.heroes {
             hero.base.username = None;
@@ -218,19 +216,19 @@ impl AppState {
         d.status_message = "Все настройки сброшены".into();
     }
 
-    fn open_presets_folder(&self) {
+    fn openPresetsFolder(&self) {
         let p = std::env::current_dir().unwrap_or_default().join("presets");
         let _ = std::process::Command::new("xdg-open").arg(p.to_str().unwrap_or(".")).spawn();
     }
 
-    fn set_dota_path(&self, path: String) {
+    fn setDotaPath(&self, path: String) {
         let mut d = app_data().lock().unwrap();
         d.config.dota_directory = Some(path.clone());
         d.config.save();
         d.status_message = format!("Путь Dota 2 обновлён: {}", path);
     }
 
-    fn get_dota_path(&self) -> QString {
+    fn getDotaPath(&self) -> QString {
         let d = app_data().lock().unwrap();
         d.config.dota_directory.clone().unwrap_or_default().into()
     }

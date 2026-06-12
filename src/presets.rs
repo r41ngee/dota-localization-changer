@@ -41,8 +41,9 @@ impl Preset {
     }
 
     pub fn load(filename: &str) -> Self {
-        let file_path = PathBuf::from(PRESETS_DIR).join(filename);
-        let name = filename.replace(".json", "");
+        let fname = if filename.ends_with(".json") { filename.to_string() } else { format!("{}.json", filename) };
+        let file_path = PathBuf::from(PRESETS_DIR).join(&fname);
+        let name = fname.replace(".json", "");
 
         if let Ok(content) = std::fs::read_to_string(&file_path) {
             if let Ok(data) = serde_json::from_str::<PresetData>(&content) {
@@ -79,7 +80,7 @@ impl Preset {
             for entry in entries.flatten() {
                 let path = entry.path();
                 if path.extension().map(|e| e == "json").unwrap_or(false) {
-                    if let Some(name) = path.file_name().and_then(|n| n.to_str()) {
+                    if let Some(name) = path.file_stem().and_then(|n| n.to_str()) {
                         names.push(name.to_string());
                     }
                 }
@@ -87,4 +88,5 @@ impl Preset {
         }
         names
     }
+
 }
