@@ -1,0 +1,11 @@
+[package]
+name = "dota-localization-changer"
+version = "2.0.2"
+edition = "2021"
+
+[dependencies]
+qmetaobject = "0.2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+regex = "1"
+cstr = "0.2"
