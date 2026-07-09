@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Window 2.15
+import QtQuick.Dialogs
 
 ApplicationWindow {
     id: window
@@ -281,30 +282,50 @@ ApplicationWindow {
                 onClicked: openLoadPresetDialog()
             }
             Button {
-                text: "Открыть папку пресетов"
+                text: "Папка пресетов"
                 Layout.fillWidth: true
                 contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter }
                 background: Rectangle { color: "#7289DA"; radius: 4 }
                 onClicked: app.openPresetsFolder()
             }
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: 8
+
             Button {
-                text: "Сменить путь Dota 2"
+                text: "Путь к Dota 2"
                 Layout.fillWidth: true
                 contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter }
                 background: Rectangle { color: "#7289DA"; radius: 4 }
                 onClicked: dotaPathDialog.open()
             }
             Button {
-                text: "Сбросить настройки"
+                text: "Сбросить"
                 Layout.fillWidth: true
                 contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter }
                 background: Rectangle { color: "#ED4245"; radius: 4 }
                 onClicked: resetConfirmDialog.open()
             }
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: 8
+
             Button {
-                text: "Сохранить изменения"
+                text: "Применить изменения"
                 Layout.fillWidth: true
-                contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter }
+                implicitHeight: 32
+                contentItem: Text {
+                    text: parent.text
+                    color: "white"
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.bold: true
+                    font.pointSize: 13
+                }
                 background: Rectangle { color: "#57F287"; radius: 4 }
                 onClicked: {
                     app.saveChanges()
@@ -625,6 +646,22 @@ ApplicationWindow {
         }
     }
 
+    FolderDialog {
+        id: folderDialog
+        title: "Выберите папку Dota 2"
+        onAccepted: {
+            var raw = folderDialog.selectedFolder.toString()
+            var path = raw
+            if (path.startsWith("file:///")) {
+                path = path.substring(7)
+                if (path.length >= 3 && path[0] === '/' && path[2] === ':') {
+                    path = path.substring(1)
+                }
+            }
+            dotaPathField.text = path
+        }
+    }
+
     Dialog {
         id: dotaPathDialog
         modal: true
@@ -632,8 +669,8 @@ ApplicationWindow {
         title: "Смена пути Dota 2"
         x: Math.round((window.width - width) / 2)
         y: Math.round((window.height - height) / 2)
-        width: 500
-        height: 150
+        width: 550
+        height: 180
         background: Rectangle { color: "#2C2F33"; radius: 8 }
 
         onAccepted: {
@@ -647,14 +684,27 @@ ApplicationWindow {
             spacing: 10
 
             Label { text: "Путь к корневой директории Dota 2:"; color: "white" }
-            TextField {
-                id: dotaPathField
+
+            RowLayout {
                 Layout.fillWidth: true
-                color: "white"
-                placeholderText: "/path/to/dota 2 beta"
-                placeholderTextColor: "#888888"
-                background: Rectangle { color: "#36393F"; radius: 4 }
-                text: app.getDotaPath()
+                spacing: 8
+
+                TextField {
+                    id: dotaPathField
+                    Layout.fillWidth: true
+                    color: "white"
+                    placeholderText: "/path/to/dota 2 beta"
+                    placeholderTextColor: "#888888"
+                    background: Rectangle { color: "#36393F"; radius: 4 }
+                    text: app.getDotaPath()
+                }
+                Button {
+                    text: "Обзор..."
+                    implicitWidth: 90
+                    contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter }
+                    background: Rectangle { color: "#4E5D94"; radius: 4 }
+                    onClicked: folderDialog.open()
+                }
             }
         }
     }
