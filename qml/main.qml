@@ -339,7 +339,8 @@ ApplicationWindow {
     Dialog {
         id: heroEditDialog
         modal: true
-        title: "Редактирование героя"
+        property string heroName: ""
+        title: "Редактирование " + heroName
         x: Math.round((window.width - width) / 2)
         y: Math.round((window.height - height) / 2)
         width: 800
@@ -444,7 +445,9 @@ ApplicationWindow {
     function openHeroEditDialog(index) {
         var hero = heroData[index]
         if (!hero) return
-        heroNameField.text = hero.username || ""
+        var name = hero.name || hero.username || ""
+        heroNameField.text = name
+        heroEditDialog.heroName = name
 
         skillsModel.clear()
         if (hero.skills) {
