@@ -339,7 +339,6 @@ ApplicationWindow {
     Dialog {
         id: heroEditDialog
         modal: true
-        standardButtons: Dialog.Save | Dialog.Cancel
         title: "Редактирование героя"
         x: Math.round((window.width - width) / 2)
         y: Math.round((window.height - height) / 2)
@@ -347,7 +346,7 @@ ApplicationWindow {
         height: 500
         background: Rectangle { color: "#2C2F33"; radius: 8 }
 
-        onAccepted: {
+        function save() {
             if (editingHeroIndex < 0) return
             var heroName = heroNameField.text.trim()
             var skillsArr = []
@@ -360,8 +359,8 @@ ApplicationWindow {
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 10
-            spacing: 10
+            anchors { topMargin: 8; leftMargin: 10; rightMargin: 10; bottomMargin: 10 }
+            spacing: 8
 
             Label { text: "Имя героя:"; color: "white"; font.bold: true }
             TextField {
@@ -417,6 +416,28 @@ ApplicationWindow {
                     }
                 }
             }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 8
+
+                Item { Layout.fillWidth: true }
+
+                Button {
+                    text: "Сохранить"
+                    implicitWidth: 100
+                    contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter; font.bold: true }
+                    background: Rectangle { color: "#57F287"; radius: 4 }
+                    onClicked: { heroEditDialog.save(); heroEditDialog.close() }
+                }
+                Button {
+                    text: "Отмена"
+                    implicitWidth: 100
+                    contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter }
+                    background: Rectangle { color: "#ED4245"; radius: 4 }
+                    onClicked: heroEditDialog.close()
+                }
+            }
         }
     }
 
@@ -441,17 +462,16 @@ ApplicationWindow {
     Dialog {
         id: itemEditDialog
         modal: true
-        standardButtons: Dialog.Save | Dialog.Cancel
         title: "Редактирование предмета"
         x: Math.round((window.width - width) / 2)
         y: Math.round((window.height - height) / 2)
         width: 400
-        height: 200
+        height: 180
         background: Rectangle { color: "#2C2F33"; radius: 8 }
 
         property int editingItemIndex: -1
 
-        onAccepted: {
+        function save() {
             if (editingItemIndex < 0) return
             app.editItem(editingItemIndex, itemNameField.text.trim())
             refreshItems()
@@ -459,8 +479,8 @@ ApplicationWindow {
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 20
-            spacing: 15
+            anchors { topMargin: 8; leftMargin: 15; rightMargin: 15; bottomMargin: 10 }
+            spacing: 10
 
             Label { text: "Новое имя:"; color: "white"; font.pointSize: 12 }
             TextField {
@@ -468,6 +488,28 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 color: "white"
                 background: Rectangle { color: "#36393F"; radius: 4 }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 8
+
+                Item { Layout.fillWidth: true }
+
+                Button {
+                    text: "Сохранить"
+                    implicitWidth: 100
+                    contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter; font.bold: true }
+                    background: Rectangle { color: "#57F287"; radius: 4 }
+                    onClicked: { itemEditDialog.save(); itemEditDialog.close() }
+                }
+                Button {
+                    text: "Отмена"
+                    implicitWidth: 100
+                    contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter }
+                    background: Rectangle { color: "#ED4245"; radius: 4 }
+                    onClicked: itemEditDialog.close()
+                }
             }
         }
     }
@@ -483,7 +525,6 @@ ApplicationWindow {
     Dialog {
         id: savePresetDialog
         modal: true
-        standardButtons: Dialog.Save | Dialog.Cancel
         title: "Сохранение пресета"
         x: Math.round((window.width - width) / 2)
         y: Math.round((window.height - height) / 2)
@@ -491,7 +532,7 @@ ApplicationWindow {
         height: 400
         background: Rectangle { color: "#2C2F33"; radius: 8 }
 
-        onAccepted: {
+        function save() {
             var name = presetNameField.text.trim()
             if (name) {
                 app.savePreset(name)
@@ -505,8 +546,8 @@ ApplicationWindow {
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 15
-            spacing: 10
+            anchors { topMargin: 8; leftMargin: 15; rightMargin: 15; bottomMargin: 10 }
+            spacing: 8
 
             Label { text: "Имя нового пресета:"; color: "white"; font.pointSize: 12 }
             TextField {
@@ -547,6 +588,28 @@ ApplicationWindow {
                     }
                 }
             }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 8
+
+                Item { Layout.fillWidth: true }
+
+                Button {
+                    text: "Сохранить"
+                    implicitWidth: 100
+                    contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter; font.bold: true }
+                    background: Rectangle { color: "#57F287"; radius: 4 }
+                    onClicked: { savePresetDialog.save(); savePresetDialog.close() }
+                }
+                Button {
+                    text: "Отмена"
+                    implicitWidth: 100
+                    contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter }
+                    background: Rectangle { color: "#ED4245"; radius: 4 }
+                    onClicked: savePresetDialog.close()
+                }
+            }
         }
     }
 
@@ -559,7 +622,6 @@ ApplicationWindow {
     Dialog {
         id: loadPresetDialog
         modal: true
-        standardButtons: Dialog.Open | Dialog.Cancel
         title: "Загрузка пресета"
         x: Math.round((window.width - width) / 2)
         y: Math.round((window.height - height) / 2)
@@ -569,7 +631,7 @@ ApplicationWindow {
 
         onOpened: refreshPresets()
 
-        onAccepted: {
+        function load() {
             if (presetListView.currentIndex >= 0) {
                 var name = presetList[presetListView.currentIndex]
                 if (name) {
@@ -583,8 +645,8 @@ ApplicationWindow {
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 15
-            spacing: 10
+            anchors { topMargin: 8; leftMargin: 15; rightMargin: 15; bottomMargin: 10 }
+            spacing: 8
 
             Label { text: "Выберите пресет:"; color: "white"; font.pointSize: 12 }
 
@@ -613,6 +675,28 @@ ApplicationWindow {
                     onClicked: presetListView.currentIndex = index
                 }
             }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 8
+
+                Item { Layout.fillWidth: true }
+
+                Button {
+                    text: "Открыть"
+                    implicitWidth: 100
+                    contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter; font.bold: true }
+                    background: Rectangle { color: "#7289DA"; radius: 4 }
+                    onClicked: { loadPresetDialog.load(); loadPresetDialog.close() }
+                }
+                Button {
+                    text: "Отмена"
+                    implicitWidth: 100
+                    contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter }
+                    background: Rectangle { color: "#ED4245"; radius: 4 }
+                    onClicked: loadPresetDialog.close()
+                }
+            }
         }
     }
 
@@ -625,7 +709,6 @@ ApplicationWindow {
     Dialog {
         id: resetConfirmDialog
         modal: true
-        standardButtons: Dialog.Yes | Dialog.No
         title: "Подтверждение"
         x: Math.round((window.width - width) / 2)
         y: Math.round((window.height - height) / 2)
@@ -633,16 +716,46 @@ ApplicationWindow {
         height: 150
         background: Rectangle { color: "#2C2F33"; radius: 8 }
 
-        onAccepted: {
-            app.resetAll()
-            refreshHeroes()
-            refreshItems()
-        }
+        ColumnLayout {
+            anchors.fill: parent
+            anchors { topMargin: 8; leftMargin: 15; rightMargin: 15; bottomMargin: 10 }
+            spacing: 8
 
-        Label {
-            anchors.centerIn: parent
-            text: "Вы уверены что хотите сбросить все настройки?"
-            color: "white"; font.pointSize: 11; wrapMode: Text.WordWrap
+            Label {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                text: "Вы уверены что хотите сбросить все настройки?"
+                color: "white"; font.pointSize: 11; wrapMode: Text.WordWrap
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 8
+
+                Item { Layout.fillWidth: true }
+
+                Button {
+                    text: "Да"
+                    implicitWidth: 80
+                    contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter; font.bold: true }
+                    background: Rectangle { color: "#ED4245"; radius: 4 }
+                    onClicked: {
+                        app.resetAll()
+                        refreshHeroes()
+                        refreshItems()
+                        resetConfirmDialog.close()
+                    }
+                }
+                Button {
+                    text: "Нет"
+                    implicitWidth: 80
+                    contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter }
+                    background: Rectangle { color: "#7289DA"; radius: 4 }
+                    onClicked: resetConfirmDialog.close()
+                }
+            }
         }
     }
 
@@ -665,7 +778,6 @@ ApplicationWindow {
     Dialog {
         id: dotaPathDialog
         modal: true
-        standardButtons: Dialog.Save | Dialog.Cancel
         title: "Смена пути Dota 2"
         x: Math.round((window.width - width) / 2)
         y: Math.round((window.height - height) / 2)
@@ -673,15 +785,15 @@ ApplicationWindow {
         height: 180
         background: Rectangle { color: "#2C2F33"; radius: 8 }
 
-        onAccepted: {
+        function save() {
             var path = dotaPathField.text.trim()
             if (path) app.setDotaPath(path)
         }
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 15
-            spacing: 10
+            anchors { topMargin: 8; leftMargin: 15; rightMargin: 15; bottomMargin: 10 }
+            spacing: 8
 
             Label { text: "Путь к корневой директории Dota 2:"; color: "white" }
 
@@ -704,6 +816,30 @@ ApplicationWindow {
                     contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter }
                     background: Rectangle { color: "#4E5D94"; radius: 4 }
                     onClicked: folderDialog.open()
+                }
+            }
+
+            Item { Layout.fillHeight: true }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 8
+
+                Item { Layout.fillWidth: true }
+
+                Button {
+                    text: "Сохранить"
+                    implicitWidth: 100
+                    contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter; font.bold: true }
+                    background: Rectangle { color: "#57F287"; radius: 4 }
+                    onClicked: { dotaPathDialog.save(); dotaPathDialog.close() }
+                }
+                Button {
+                    text: "Отмена"
+                    implicitWidth: 100
+                    contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter }
+                    background: Rectangle { color: "#ED4245"; radius: 4 }
+                    onClicked: dotaPathDialog.close()
                 }
             }
         }
