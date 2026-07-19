@@ -6,47 +6,34 @@ static KV_PATTERN: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r#"("(?:[^"\\]|\\.)*")\s*("(?:[^"\\]|\\.)*")(?:\s*//\s*(.*))?"#).unwrap()
 });
 
-const HEADER_LINES: usize = 5;
-const FOOTER_LINES: usize = 3;
-
-pub fn parse(text: &str) -> HashMap<String, String> {
-    let mut data = HashMap::new();
-    let lines: Vec<&str> = text.lines().collect();
-    let total_lines = lines.len();
-
-    for (i, line) in lines.iter().enumerate() {
-        if i < HEADER_LINES || i >= total_lines - FOOTER_LINES {
-            continue;
-        }
+pub fn replace_kv_pairs(original: &str, replacements: &HashMap<String, String>) -> String {
+    if replacements.is_empty() {
+        return original.to_string();
+    }
+    let mut result = String::with_capacity(original.len());
+    for line in original.lines() {
         let trimmed = line.trim();
-        if trimmed.is_empty() || trimmed.starts_with("//") {
-            continue;
+        if !trimmed.is_empty() && !trimmed.starts_with("//") {
+            if let Some(caps) = KV_PATTERN.captures(trimmed) {
+                let key = &caps[1];
+                let unescaped_key = key[1..key.len() - 1].replace("\\\"", "\"");
+                if let Some(new_value) = replacements.get(&unescaped_key) {
+                    let escaped_value = new_value.replace('"', "\\\"");
+                    let indent_len = line.len() - line.trim_start().len();
+                    let indent = &line[..indent_len];
+                    result.push_str(indent);
+                    result.push('"');
+                    result.push_str(key);
+                    result.push_str("\" \"");
+                    result.push_str(&escaped_value);
+                    result.push('"');
+                    result.push('\n');
+                    continue;
+                }
+            }
         }
-        if let Some(caps) = KV_PATTERN.captures(trimmed) {
-            let key = &caps[1];
-            let value = &caps[2];
-            let unescaped_key = key[1..key.len() - 1].replace("\\\"", "\"");
-            let unescaped_value = value[1..value.len() - 1].replace("\\\"", "\"");
-            data.insert(unescaped_key, unescaped_value);
-        }
+        result.push_str(line);
+        result.push('\n');
     }
-
-    data
-}
-
-pub fn unparse(data: &HashMap<String, String>, lang: &str) -> String {
-    let mut lines = Vec::new();
-    lines.push("\"lang\"".to_string());
-    lines.push("{".to_string());
-    lines.push(format!("\t\"Language\" \"{}\"", lang));
-    lines.push("\t\"Tokens\"".to_string());
-    lines.push("\t{".to_string());
-    for (key, value) in data {
-        let escaped_key = key.replace('"', "\\\"");
-        let escaped_value = value.replace('"', "\\\"");
-        lines.push(format!("\t\t\"{}\" \"{}\"", escaped_key, escaped_value));
-    }
-    lines.push("\t}".to_string());
-    lines.push("}".to_string());
-    lines.join("\n")
+    result
 }

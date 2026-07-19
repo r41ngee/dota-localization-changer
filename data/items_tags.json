@@ -1,474 +1,474 @@
 [
-    {
-        "name": "Aegis of the Immortal",
-        "key": "DOTA_Tooltip_Ability_item_aegis"
-    },
-    {
-        "name": "Aether Lens",
-        "key": "DOTA_Tooltip_Ability_item_aether_lens"
-    },
-    {
-        "name": "Aeon Disk",
-        "key": "DOTA_Tooltip_Ability_item_aeon_disk"
-    },
-    {
-        "name": "Aghanim's Blessing",
-        "key": "DOTA_Tooltip_Ability_item_aghanims_blessing"
-    },
-    {
-        "name": "Aghanim's Scepter",
-        "key": "DOTA_Tooltip_Ability_item_ultimate_scepter"
-    },
-    {
-        "name": "Aghanim's Shard",
-        "key": "DOTA_Tooltip_Ability_item_aghanims_shard"
-    },
-    {
-        "name": "Arcane Blink",
-        "key": "DOTA_Tooltip_Ability_item_arcane_blink"
-    },
-    {
-        "name": "Arcane Boots",
-        "key": "DOTA_Tooltip_Ability_item_arcane_boots"
-    },
-    {
-        "name": "Armlet of Mordiggian",
-        "key": "DOTA_Tooltip_Ability_item_armlet"
-    },
-    {
-        "name": "Band of Elvenskin",
-        "key": "DOTA_Tooltip_Ability_item_boots_of_elves"
-    },
-    {
-        "name": "Battle Fury",
-        "key": "DOTA_Tooltip_Ability_item_bfury"
-    },
-    {
-        "name": "Belt of Strength",
-        "key": "DOTA_Tooltip_Ability_item_belt_of_strength"
-    },
-    {
-        "name": "Black King Bar",
-        "key": "DOTA_Tooltip_Ability_item_black_king_bar"
-    },
-    {
-        "name": "Blade of Alacrity",
-        "key": "DOTA_Tooltip_Ability_item_blade_of_alacrity"
-    },
-    {
-        "name": "Blink Dagger",
-        "key": "DOTA_Tooltip_Ability_item_blink"
-    },
-    {
-        "name": "Blood Grenade",
-        "key": "DOTA_Tooltip_Ability_item_blood_grenade"
-    },
-    {
-        "name": "Bloodthorn",
-        "key": "DOTA_Tooltip_Ability_item_bloodthorn"
-    },
-    {
-        "name": "Bottle",
-        "key": "DOTA_Tooltip_Ability_item_bottle"
-    },
-    {
-        "name": "Boots of Bearing",
-        "key": "DOTA_Tooltip_Ability_item_boots_of_bearing"
-    },
-    {
-        "name": "Boots of Travel",
-        "key": "DOTA_Tooltip_Ability_item_travel_boots"
-    },
-    {
-        "name": "Broadsword",
-        "key": "DOTA_Tooltip_Ability_item_broadsword"
-    },
-    {
-        "name": "Buckler",
-        "key": "DOTA_Tooltip_Ability_item_buckler"
-    },
-    {
-        "name": "Butterfly",
-        "key": "DOTA_Tooltip_Ability_item_butterfly"
-    },
-    {
-        "name": "Chainmail",
-        "key": "DOTA_Tooltip_Ability_item_chainmail"
-    },
-    {
-        "name": "Cheese",
-        "key": "DOTA_Tooltip_Ability_item_cheese"
-    },
-    {
-        "name": "Circlet",
-        "key": "DOTA_Tooltip_Ability_item_circlet"
-    },
-    {
-        "name": "Claymore",
-        "key": "DOTA_Tooltip_Ability_item_claymore"
-    },
-    {
-        "name": "Clarity",
-        "key": "DOTA_Tooltip_Ability_item_clarity"
-    },
-    {
-        "name": "Cloak",
-        "key": "DOTA_Tooltip_Ability_item_cloak"
-    },
-    {
-        "name": "Crimson Guard",
-        "key": "DOTA_Tooltip_Ability_item_crimson_guard"
-    },
-    {
-        "name": "Crystalys",
-        "key": "DOTA_Tooltip_Ability_item_crystalys"
-    },
-    {
-        "name": "Daedalus",
-        "key": "DOTA_Tooltip_Ability_item_greater_crit"
-    },
-    {
-        "name": "Dagon",
-        "key": "DOTA_Tooltip_Ability_item_dagon"
-    },
-    {
-        "name": "Diffusal Blade",
-        "key": "DOTA_Tooltip_Ability_item_diffusal_blade"
-    },
-    {
-        "name": "Disperser",
-        "key": "DOTA_Tooltip_Ability_item_disperser"
-    },
-    {
-        "name": "Divine Rapier",
-        "key": "DOTA_Tooltip_Ability_item_rapier"
-    },
-    {
-        "name": "Drum of Endurance",
-        "key": "DOTA_Tooltip_Ability_item_ancient_janggo"
-    },
-    {
-        "name": "Dust of Appearance",
-        "key": "DOTA_Tooltip_Ability_item_dust"
-    },
-    {
-        "name": "Echo Sabre",
-        "key": "DOTA_Tooltip_Ability_item_echo_sabre"
-    },
-    {
-        "name": "Ethereal Blade",
-        "key": "DOTA_Tooltip_Ability_item_ethereal_blade"
-    },
-    {
-        "name": "Eul's Scepter of Divinity",
-        "key": "DOTA_Tooltip_Ability_item_cyclone"
-    },
-    {
-        "name": "Force Staff",
-        "key": "DOTA_Tooltip_Ability_item_force_staff"
-    },
-    {
-        "name": "Gauntlets of Strength",
-        "key": "DOTA_Tooltip_Ability_item_gauntlets_of_strength"
-    },
-    {
-        "name": "Gem of True Sight",
-        "key": "DOTA_Tooltip_Ability_item_gem"
-    },
-    {
-        "name": "Gleipnir",
-        "key": "DOTA_Tooltip_Ability_item_gleipnir"
-    },
-    {
-        "name": "Guardian Greaves",
-        "key": "DOTA_Tooltip_Ability_item_guardian_greaves"
-    },
-    {
-        "name": "Harpoon",
-        "key": "DOTA_Tooltip_Ability_item_harpoon"
-    },
-    {
-        "name": "Headdress",
-        "key": "DOTA_Tooltip_Ability_item_headdress"
-    },
-    {
-        "name": "Healing Salve",
-        "key": "DOTA_Tooltip_Ability_item_flask"
-    },
-    {
-        "name": "Heart of Tarrasque",
-        "key": "DOTA_Tooltip_Ability_item_heart"
-    },
-    {
-        "name": "Helm of Iron Will",
-        "key": "DOTA_Tooltip_Ability_item_helm_of_iron_will"
-    },
-    {
-        "name": "Holy Locket",
-        "key": "DOTA_Tooltip_Ability_item_holy_locket"
-    },
-    {
-        "name": "Infused Raindrops",
-        "key": "DOTA_Tooltip_Ability_item_infused_raindrop"
-    },
-    {
-        "name": "Iron Branch",
-        "key": "DOTA_Tooltip_Ability_item_branches"
-    },
-    {
-        "name": "Javelin",
-        "key": "DOTA_Tooltip_Ability_item_javelin"
-    },
-    {
-        "name": "Kaya",
-        "key": "DOTA_Tooltip_Ability_item_kaya"
-    },
-    {
-        "name": "Kaya and Sange",
-        "key": "DOTA_Tooltip_Ability_item_kaya_and_sange"
-    },
-    {
-        "name": "Lotus Orb",
-        "key": "DOTA_Tooltip_Ability_item_lotus_orb"
-    },
-    {
-        "name": "Mage Slayer",
-        "key": "DOTA_Tooltip_Ability_item_mage_slayer"
-    },
-    {
-        "name": "Magic Stick",
-        "key": "DOTA_Tooltip_Ability_item_magic_stick"
-    },
-    {
-        "name": "Magic Wand",
-        "key": "DOTA_Tooltip_Ability_item_magic_wand"
-    },
-    {
-        "name": "Manta Style",
-        "key": "DOTA_Tooltip_Ability_item_manta"
-    },
-    {
-        "name": "Mantle of Intelligence",
-        "key": "DOTA_Tooltip_Ability_item_mantle_of_intelligence"
-    },
-    {
-        "name": "Medallion of Courage",
-        "key": "DOTA_Tooltip_Ability_item_medallion_of_courage"
-    },
-    {
-        "name": "Mekansm",
-        "key": "DOTA_Tooltip_Ability_item_mekansm"
-    },
-    {
-        "name": "Mithril Hammer",
-        "key": "DOTA_Tooltip_Ability_item_mithril_hammer"
-    },
-    {
-        "name": "Monkey King Bar",
-        "key": "DOTA_Tooltip_Ability_item_monkey_king_bar"
-    },
-    {
-        "name": "Nullifier",
-        "key": "DOTA_Tooltip_Ability_item_nullifier"
-    },
-    {
-        "name": "Observer Ward",
-        "key": "DOTA_Tooltip_Ability_item_ward_observer"
-    },
-    {
-        "name": "Octarine Core",
-        "key": "DOTA_Tooltip_Ability_item_octarine_core"
-    },
-    {
-        "name": "Ogre Club",
-        "key": "DOTA_Tooltip_Ability_item_ogre_axe"
-    },
-    {
-        "name": "Orb of Venom",
-        "key": "DOTA_Tooltip_Ability_item_orb_of_venom"
-    },
-    {
-        "name": "Orchid Malevolence",
-        "key": "DOTA_Tooltip_Ability_item_orchid"
-    },
-    {
-        "name": "Overwhelming Blink",
-        "key": "DOTA_Tooltip_Ability_item_overwhelming_blink"
-    },
-    {
-        "name": "Parasma",
-        "key": "DOTA_Tooltip_Ability_item_parasma"
-    },
-    {
-        "name": "Pavise",
-        "key": "DOTA_Tooltip_Ability_item_pavise"
-    },
-    {
-        "name": "Phase Boots",
-        "key": "DOTA_Tooltip_Ability_item_phase_boots"
-    },
-    {
-        "name": "Phylactery",
-        "key": "DOTA_Tooltip_Ability_item_phylactery"
-    },
-    {
-        "name": "Pipe of Insight",
-        "key": "DOTA_Tooltip_Ability_item_pipe"
-    },
-    {
-        "name": "Power Treads",
-        "key": "DOTA_Tooltip_Ability_item_power_treads"
-    },
-    {
-        "name": "Quarterstaff",
-        "key": "DOTA_Tooltip_Ability_item_quarterstaff"
-    },
-    {
-        "name": "Quelling Blade",
-        "key": "DOTA_Tooltip_Ability_item_quelling_blade"
-    },
-    {
-        "name": "Radiance",
-        "key": "DOTA_Tooltip_Ability_item_radiance"
-    },
-    {
-        "name": "Refresher Orb",
-        "key": "DOTA_Tooltip_Ability_item_refresher"
-    },
-    {
-        "name": "Refresher Shard",
-        "key": "DOTA_Tooltip_Ability_item_refresher_shard"
-    },
-    {
-        "name": "Revenant's Brooch",
-        "key": "DOTA_Tooltip_Ability_item_revenants_brooch"
-    },
-    {
-        "name": "Ring of Basilius",
-        "key": "DOTA_Tooltip_Ability_item_ring_of_basilius"
-    },
-    {
-        "name": "Ring of Health",
-        "key": "DOTA_Tooltip_Ability_item_ring_of_health"
-    },
-    {
-        "name": "Ring of Protection",
-        "key": "DOTA_Tooltip_Ability_item_ring_of_protection"
-    },
-    {
-        "name": "Robe of the Magi",
-        "key": "DOTA_Tooltip_Ability_item_robe"
-    },
-    {
-        "name": "Sange",
-        "key": "DOTA_Tooltip_Ability_item_sange"
-    },
-    {
-        "name": "Sange and Yasha",
-        "key": "DOTA_Tooltip_Ability_item_sange_and_yasha"
-    },
-    {
-        "name": "Satanic",
-        "key": "DOTA_Tooltip_Ability_item_satanic"
-    },
-    {
-        "name": "Scythe of Vyse",
-        "key": "DOTA_Tooltip_Ability_item_sheepstick"
-    },
-    {
-        "name": "Sentry Ward",
-        "key": "DOTA_Tooltip_Ability_item_ward_sentry"
-    },
-    {
-        "name": "Shadow Blade",
-        "key": "DOTA_Tooltip_Ability_item_invis_sword"
-    },
-    {
-        "name": "Shiva's Guard",
-        "key": "DOTA_Tooltip_Ability_item_shivas_guard"
-    },
-    {
-        "name": "Silver Edge",
-        "key": "DOTA_Tooltip_Ability_item_silver_edge"
-    },
-    {
-        "name": "Slippers of Agility",
-        "key": "DOTA_Tooltip_Ability_item_slippers_of_agility"
-    },
-    {
-        "name": "Smoke of Deceit",
-        "key": "DOTA_Tooltip_Ability_item_smoke_of_deceit"
-    },
-    {
-        "name": "Solar Crest",
-        "key": "DOTA_Tooltip_Ability_item_solar_crest"
-    },
-    {
-        "name": "Soul Ring",
-        "key": "DOTA_Tooltip_Ability_item_soul_ring"
-    },
-    {
-        "name": "Spirit Vessel",
-        "key": "DOTA_Tooltip_Ability_item_spirit_vessel"
-    },
-    {
-        "name": "Staff of Wizardry",
-        "key": "DOTA_Tooltip_Ability_item_staff_of_wizardry"
-    },
-    {
-        "name": "Stout Shield",
-        "key": "DOTA_Tooltip_Ability_item_stout_shield"
-    },
-    {
-        "name": "Swift Blink",
-        "key": "DOTA_Tooltip_Ability_item_swift_blink"
-    },
-    {
-        "name": "Talisman of Evasion",
-        "key": "DOTA_Tooltip_Ability_item_talisman_of_evasion"
-    },
-    {
-        "name": "Tango",
-        "key": "DOTA_Tooltip_Ability_item_tango"
-    },
-    {
-        "name": "Tranquil Boots",
-        "key": "DOTA_Tooltip_Ability_item_tranquil_boots"
-    },
-    {
-        "name": "Town Portal Scroll",
-        "key": "DOTA_Tooltip_Ability_item_tpscroll"
-    },
-    {
-        "name": "Urn of Shadows",
-        "key": "DOTA_Tooltip_Ability_item_urn_of_shadows"
-    },
-    {
-        "name": "Veil of Discord",
-        "key": "DOTA_Tooltip_Ability_item_veil_of_discord"
-    },
-    {
-        "name": "Vladmir's Offering",
-        "key": "DOTA_Tooltip_Ability_item_vladmir"
-    },
-    {
-        "name": "Void Stone",
-        "key": "DOTA_Tooltip_Ability_item_void_stone"
-    },
-    {
-        "name": "Wind Lace",
-        "key": "DOTA_Tooltip_Ability_item_wind_lace"
-    },
-    {
-        "name": "Wind Waker",
-        "key": "DOTA_Tooltip_Ability_item_wind_waker"
-    },
-    {
-        "name": "Yasha",
-        "key": "DOTA_Tooltip_Ability_item_yasha"
-    },
-    {
-        "name": "Yasha and Kaya",
-        "key": "DOTA_Tooltip_Ability_item_yasha_and_kaya"
-    }
+  {
+    "key": "DOTA_Tooltip_Ability_item_aegis",
+    "name": "Aegis of the Immortal"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_aether_lens",
+    "name": "Aether Lens"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_aeon_disk",
+    "name": "Aeon Disk"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_aghanims_blessing",
+    "name": "Aghanim's Blessing"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_ultimate_scepter",
+    "name": "Aghanim's Scepter"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_aghanims_shard",
+    "name": "Aghanim's Shard"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_arcane_blink",
+    "name": "Arcane Blink"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_arcane_boots",
+    "name": "Arcane Boots"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_armlet",
+    "name": "Armlet of Mordiggian"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_boots_of_elves",
+    "name": "Band of Elvenskin"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_bfury",
+    "name": "Battle Fury"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_belt_of_strength",
+    "name": "Belt of Strength"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_black_king_bar",
+    "name": "Black King Bar"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_blade_of_alacrity",
+    "name": "Blade of Alacrity"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_blink",
+    "name": "Blink Dagger"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_blood_grenade",
+    "name": "Blood Grenade"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_bloodthorn",
+    "name": "Bloodthorn"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_bottle",
+    "name": "Bottle"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_boots_of_bearing",
+    "name": "Boots of Bearing"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_travel_boots",
+    "name": "Boots of Travel"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_broadsword",
+    "name": "Broadsword"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_buckler",
+    "name": "Buckler"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_butterfly",
+    "name": "Butterfly"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_chainmail",
+    "name": "Chainmail"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_cheese",
+    "name": "Cheese"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_circlet",
+    "name": "Circlet"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_claymore",
+    "name": "Claymore"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_clarity",
+    "name": "Clarity"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_cloak",
+    "name": "Cloak"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_crimson_guard",
+    "name": "Crimson Guard"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_crystalys",
+    "name": "Crystalys"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_greater_crit",
+    "name": "Daedalus"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_dagon",
+    "name": "Dagon"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_diffusal_blade",
+    "name": "Diffusal Blade"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_disperser",
+    "name": "Disperser"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_rapier",
+    "name": "Divine Rapier"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_ancient_janggo",
+    "name": "Drum of Endurance"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_dust",
+    "name": "Dust of Appearance"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_echo_sabre",
+    "name": "Echo Sabre"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_ethereal_blade",
+    "name": "Ethereal Blade"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_cyclone",
+    "name": "Eul's Scepter of Divinity"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_force_staff",
+    "name": "Force Staff"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_gauntlets_of_strength",
+    "name": "Gauntlets of Strength"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_gem",
+    "name": "Gem of True Sight"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_gleipnir",
+    "name": "Gleipnir"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_guardian_greaves",
+    "name": "Guardian Greaves"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_harpoon",
+    "name": "Harpoon"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_headdress",
+    "name": "Headdress"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_flask",
+    "name": "Healing Salve"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_heart",
+    "name": "Heart of Tarrasque"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_helm_of_iron_will",
+    "name": "Helm of Iron Will"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_holy_locket",
+    "name": "Holy Locket"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_infused_raindrop",
+    "name": "Infused Raindrops"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_branches",
+    "name": "Iron Branch"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_javelin",
+    "name": "Javelin"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_kaya",
+    "name": "Kaya"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_kaya_and_sange",
+    "name": "Kaya and Sange"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_lotus_orb",
+    "name": "Lotus Orb"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_mage_slayer",
+    "name": "Mage Slayer"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_magic_stick",
+    "name": "Magic Stick"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_magic_wand",
+    "name": "Magic Wand"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_manta",
+    "name": "Manta Style"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_mantle_of_intelligence",
+    "name": "Mantle of Intelligence"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_medallion_of_courage",
+    "name": "Medallion of Courage"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_mekansm",
+    "name": "Mekansm"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_mithril_hammer",
+    "name": "Mithril Hammer"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_monkey_king_bar",
+    "name": "Monkey King Bar"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_nullifier",
+    "name": "Nullifier"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_ward_observer",
+    "name": "Observer Ward"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_octarine_core",
+    "name": "Octarine Core"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_ogre_axe",
+    "name": "Ogre Club"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_orb_of_venom",
+    "name": "Orb of Venom"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_orchid",
+    "name": "Orchid Malevolence"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_overwhelming_blink",
+    "name": "Overwhelming Blink"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_parasma",
+    "name": "Parasma"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_pavise",
+    "name": "Pavise"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_phase_boots",
+    "name": "Phase Boots"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_phylactery",
+    "name": "Phylactery"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_pipe",
+    "name": "Pipe of Insight"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_power_treads",
+    "name": "Power Treads"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_quarterstaff",
+    "name": "Quarterstaff"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_quelling_blade",
+    "name": "Quelling Blade"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_radiance",
+    "name": "Radiance"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_refresher",
+    "name": "Refresher Orb"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_refresher_shard",
+    "name": "Refresher Shard"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_revenants_brooch",
+    "name": "Revenant's Brooch"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_ring_of_basilius",
+    "name": "Ring of Basilius"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_ring_of_health",
+    "name": "Ring of Health"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_ring_of_protection",
+    "name": "Ring of Protection"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_robe",
+    "name": "Robe of the Magi"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_sange",
+    "name": "Sange"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_sange_and_yasha",
+    "name": "Sange and Yasha"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_satanic",
+    "name": "Satanic"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_sheepstick",
+    "name": "Scythe of Vyse"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_ward_sentry",
+    "name": "Sentry Ward"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_invis_sword",
+    "name": "Shadow Blade"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_shivas_guard",
+    "name": "Shiva's Guard"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_silver_edge",
+    "name": "Silver Edge"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_slippers_of_agility",
+    "name": "Slippers of Agility"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_smoke_of_deceit",
+    "name": "Smoke of Deceit"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_solar_crest",
+    "name": "Solar Crest"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_soul_ring",
+    "name": "Soul Ring"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_spirit_vessel",
+    "name": "Spirit Vessel"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_staff_of_wizardry",
+    "name": "Staff of Wizardry"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_stout_shield",
+    "name": "Stout Shield"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_swift_blink",
+    "name": "Swift Blink"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_talisman_of_evasion",
+    "name": "Talisman of Evasion"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_tango",
+    "name": "Tango"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_tranquil_boots",
+    "name": "Tranquil Boots"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_tpscroll",
+    "name": "Town Portal Scroll"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_urn_of_shadows",
+    "name": "Urn of Shadows"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_veil_of_discord",
+    "name": "Veil of Discord"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_vladmir",
+    "name": "Vladmir's Offering"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_void_stone",
+    "name": "Void Stone"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_wind_lace",
+    "name": "Wind Lace"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_wind_waker",
+    "name": "Wind Waker"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_yasha",
+    "name": "Yasha"
+  },
+  {
+    "key": "DOTA_Tooltip_Ability_item_yasha_and_kaya",
+    "name": "Yasha and Kaya"
+  }
 ]

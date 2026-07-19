@@ -31,9 +31,8 @@ impl Skill {
     pub fn to_dict(&self) -> serde_json::Value {
         self.entity.to_dict()
     }
-    pub fn to_key_pair(&self) -> (String, String) {
-        let v = self.entity.username.clone().unwrap_or_else(|| self.entity.name.clone());
-        (self.entity.key.clone(), v)
+    pub fn modified_key_pair(&self) -> Option<(String, String)> {
+        self.entity.username.as_ref().map(|u| (self.entity.key.clone(), u.clone()))
     }
 }
 
@@ -66,13 +65,16 @@ impl Hero {
         serde_json::Value::Object(m)
     }
 
-    pub fn to_key_pairs(&self) -> HashMap<String, String> {
+    pub fn modified_key_pairs(&self) -> HashMap<String, String> {
         let mut r = HashMap::new();
-        let nv = self.base.username.clone().unwrap_or_else(|| self.base.name.clone());
-        r.insert(self.base.key.clone(), format!("#|{}|#{}", self.gender, nv));
+        if self.base.username.is_some() {
+            let nv = self.base.username.as_ref().unwrap();
+            r.insert(self.base.key.clone(), format!("#|{}|#{}", self.gender, nv));
+        }
         for s in &self.skills {
-            let (k, v) = s.to_key_pair();
-            r.insert(k, v);
+            if let Some((k, v)) = s.modified_key_pair() {
+                r.insert(k, v);
+            }
         }
         r
     }
@@ -88,8 +90,7 @@ impl Item {
     pub fn to_dict(&self) -> serde_json::Value {
         self.entity.to_dict()
     }
-    pub fn to_key_pair(&self) -> (String, String) {
-        let v = self.entity.username.clone().unwrap_or_else(|| self.entity.name.clone());
-        (self.entity.key.clone(), v)
+    pub fn modified_key_pair(&self) -> Option<(String, String)> {
+        self.entity.username.as_ref().map(|u| (self.entity.key.clone(), u.clone()))
     }
 }

@@ -325,25 +325,68 @@ impl AppState {
                 return;
             }
         };
+
         let content = match std::fs::read_to_string("data/abilities_russian.txt") {
             Ok(c) => c,
-            Err(e) => {
-                error!("Не удалось прочитать abilities_russian.txt: {}", e);
-                d.status_message = "Не удалось прочитать abilities_russian.txt".into();
-                return;
+            Err(_) => {
+                if let Some(vpk) = d.config.vpk_path() {
+                    debug!("abilities_russian.txt не найден, извлекаю из VPK: {}", vpk);
+                    match vpk::extract_file(
+                        &vpk,
+                        "resource/localization/abilities_russian.txt",
+                        "data/abilities_russian.txt",
+                    ) {
+                        Ok(()) => match std::fs::read_to_string("data/abilities_russian.txt") {
+                            Ok(c) => c,
+                            Err(e) => {
+                                error!("Не удалось прочитать извлечённый abilities_russian.txt: {}", e);
+                                d.status_message = "Не удалось прочитать abilities_russian.txt".into();
+                                return;
+                            }
+                        },
+                        Err(e) => {
+                            warn!("Не удалось извлечь abilities_russian.txt из VPK: {} — создаю новый VPK", e);
+                            if let Err(e2) = vpk::create_vpk_with_empty_abilities(&vpk) {
+                                error!("Не удалось создать VPK: {}", e2);
+                                d.status_message = format!("Ошибка создания VPK: {}", e2);
+                                return;
+                            }
+                            match vpk::extract_file(
+                                &vpk,
+                                "resource/localization/abilities_russian.txt",
+                                "data/abilities_russian.txt",
+                            ) {
+                                Ok(()) => std::fs::read_to_string("data/abilities_russian.txt")
+                                    .unwrap_or_default(),
+                                Err(e) => {
+                                    error!("Не удалось прочитать abilities_russian.txt после создания VPK: {}", e);
+                                    d.status_message = "Не удалось прочитать abilities_russian.txt".into();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    debug!("Путь к Dota 2 не указан, abilities_russian.txt не найден — создаю пустой файл");
+                    let _ = std::fs::create_dir_all("data");
+                    let _ = std::fs::write("data/abilities_russian.txt", "\"lang\"\n{\n\t\"Language\" \"russian\"\n\t\"Tokens\"\n\t{\n\t}\n}\n");
+                    std::fs::read_to_string("data/abilities_russian.txt").unwrap_or_default()
+                }
             }
         };
         debug!("abilities_russian.txt прочитан: {} байт", content.len());
-        let mut kv = kvparser::parse(&content);
-        debug!("KV записей после парсинга: {}", kv.len());
+
+        let mut replacements: std::collections::HashMap<String, String> = std::collections::HashMap::new();
         for hero in &d.heroes {
-            kv.extend(hero.to_key_pairs());
+            replacements.extend(hero.modified_key_pairs());
         }
         for item in &d.items {
-            let (k, v) = item.to_key_pair();
-            kv.insert(k, v);
+            if let Some((k, v)) = item.modified_key_pair() {
+                replacements.insert(k, v);
+            }
         }
-        debug!("KV записей после наложения изменений: {}", kv.len());
+        debug!("KV замен: {}", replacements.len());
+
         let hj = serde_json::to_string_pretty(
             &d.heroes.iter().map(|h| h.to_dict()).collect::<Vec<_>>(),
         )
@@ -370,7 +413,7 @@ impl AppState {
             debug!("items_tags.json записан");
         }
 
-        let out = kvparser::unparse(&kv, "russian");
+        let out = kvparser::replace_kv_pairs(&content, &replacements);
         if let Err(e) = std::fs::write("data/abilities_russian.txt", &out) {
             error!("Не удалось записать abilities_russian.txt: {}", e);
         } else {

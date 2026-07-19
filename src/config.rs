@@ -76,7 +76,8 @@ impl Config {
 
     pub fn vpk_path(&self) -> Option<String> {
         self.dota_directory.as_ref().map(|dir| {
-            format!("{}/game/dota_russian/pak01_dir.vpk", dir)
+            let trimmed = dir.trim_end_matches('/');
+            format!("{}/game/dota_russian/pak01_dir.vpk", trimmed)
         })
     }
 }
